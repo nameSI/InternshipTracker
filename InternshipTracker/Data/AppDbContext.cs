@@ -10,4 +10,5 @@ namespace InternshipTracker.Data
         public DbSet<JobApplication> JobApplications => Set<JobApplication>();
     
     }
+
 }
