@@ -1,8 +1,49 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using InternshipTracker.Models
+@model DashBoardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome to the Internship Tracker Website</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h1 class="mb-4">Dashboard</h1>
+<div class="row g-3 mb-4">
+    @foreach (var status in Enum.GetValues<ApplicationStatus>())
+    {
+        <div class="col-6 col-md">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="display
+6">@(Model.Counts.GetValueOrDefault(status))</div>
+                    <div class="text-muted">@status</div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
+<h2 class="h4">Wishlist deadlines in the next 14 days</h2>
+@if (!Model.Upcoming.Any())
+{
+    <p class="text-muted">Nothing due soon. Add a deadline to a wishlist 
+application.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr><th>Company</th><th>Role</th><th>Deadline</th><th></th></tr>
+        </thead>
+        <tbody>
+            @foreach (var a in Model.Upcoming)
+            {
+                <tr>
+                    <td>@a.Company</td>
+                    <td>@a.Role</td>
+                    <td>@(a.Deadline?.ToString("dd MMM yyyy"))</td>
+                    <td>
+                        <a asp-controller="JobApplications" asp-action="Edit"
+                           asp-route-id="@a.Id">Open</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<a class="btn btn-primary" asp-controller="JobApplications" asp-action="Create">Add application</a>
