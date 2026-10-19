@@ -1,4 +1,3 @@
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using InternshipTracker.Models;
@@ -14,9 +13,15 @@ public class JobApplicationsController : Controller
     }
 
     // GET: JOBAPPLICATIONS
-    public async Task<IActionResult> Index()    
+    // GET: JobApplications
+    public async Task<IActionResult> Index(ApplicationStatus? status)
     {
-        return View(await _context.JobApplications.ToListAsync());
+        var query = _context.JobApplications.AsQueryable();
+        if (status.HasValue)
+        {
+            query = query.Where(a => a.Status == status.Value);
+        }
+        return View(await query.OrderBy(a => a.Deadline).ToListAsync());
     }
 
     // GET: JOBAPPLICATIONS/Details/5

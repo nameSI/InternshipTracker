@@ -1,4 +1,5 @@
 @model IEnumerable<InternshipTracker.Models.JobApplication>
+@using InternshipTracker.Models
 
 @{
     ViewData["Title"] = "Index";
@@ -9,6 +10,13 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<form method="get" class="mb-3 d-flex gap-2">
+    <select name="status" class="form-select w-auto" asp-
+            items="Html.GetEnumSelectList<ApplicationStatus>()">
+        <option value="">All statuses</option>
+    </select>
+    <button class="btn btn-outline-primary">Filter</button>
+</form>
 <table class="table">
     <thead>
         <tr>
