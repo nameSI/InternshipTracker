@@ -1,14 +1,15 @@
 ﻿using InternshipTracker.Models;
 using Microsoft.EntityFrameworkCore;
-namespace InternshipTracker.Data
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+namespace InternshipTracker.Data;
+
+
+public class AppDbContext : IdentityDbContext<IdentityUser>
 {
-    public class AppDbContext : DbContext
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-        {
-        }
-        public DbSet<JobApplication> JobApplications => Set<JobApplication>();
-    
     }
+    public DbSet<JobApplication> JobApplications => Set<JobApplication>();
 
 }

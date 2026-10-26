@@ -25,11 +25,9 @@ public class JobApplication
     [DataType(DataType.Date)]
     public DateTime? Deadline { get; set; }
     [StringLength(1000)]
-    public string? Notes 
-    
-    
-    
-    { get; set; }
+    public string? Notes { get; set; }
+    public string? UserId { get; set; }
+    public DateTime? ReminderSenton { get; set; }   
 }
 
 
