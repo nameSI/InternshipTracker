@@ -27,7 +27,7 @@ public class JobApplication
     [StringLength(1000)]
     public string? Notes { get; set; }
     public string? UserId { get; set; }
-    public DateTime? ReminderSenton { get; set; }   
+    public DateTime? ReminderSentOn { get; set; }   
 }
 
 
