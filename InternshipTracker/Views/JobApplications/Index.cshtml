@@ -10,12 +10,14 @@
 <p>
     <a class="btn btn-primary" asp-action="Create">Create New</a>
 </p>
-<form method="get" class="mb-3 d-flex gap-2">
-    <select name="status" class="form-select w-auto" asp-
+<form method="get" class="mb-3 d-flex flex-wrap gap-2">
+    <input type="text" name="search" class="form-control w-auto"
+           placeholder="Search company or role" value="@Context.Request.Query["search"]" />
+    <select name="status" class="form-select w-auto" asp
             items="Html.GetEnumSelectList<ApplicationStatus>()">
         <option value="">All statuses</option>
     </select>
-    <button class="btn btn-outline-primary">Filter</button>
+    <button class="btn btn-outline-primary">Search</button>
 </form>
 <table class="table">
     <thead>
