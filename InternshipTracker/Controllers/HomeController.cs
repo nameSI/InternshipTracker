@@ -3,6 +3,8 @@ using InternshipTracker.Data;
 using InternshipTracker.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace InternshipTracker.Controllers;
 
@@ -13,17 +15,20 @@ public class HomeController : Controller
     {
         _context = context;
     }
+    [Authorize]   // visitors who are not logged in are sent to the login page
     public async Task<IActionResult> Index()
     {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         var today = DateTime.Today;
         var soon = today.AddDays(14);
+        var mine = _context.JobApplications.Where(a => a.UserId == userId);
         var vm = new DashBoardViewModel
         {
-            Counts = await _context.JobApplications
+            Counts = await mine
                 .GroupBy(a => a.Status)
                 .Select(g => new { g.Key, Count = g.Count() })
                 .ToDictionaryAsync(x => x.Key, x => x.Count),
-            Upcoming = await _context.JobApplications
+            Upcoming = await mine
                 .Where(a => a.Status == ApplicationStatus.Wishlist
                          && a.Deadline != null
                          && a.Deadline >= today
