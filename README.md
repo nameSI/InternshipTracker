@@ -14,18 +14,18 @@ C#, ASP.NET Core MVC (.NET 10), Entity Framework Core, SQL Server, Bootstrap
 ## Screenshots
 
 ### Login and registration
-![Login page](docs/login_page.png)
-![Register page](docs/register_page.png)
+![Login page](docs/login_page.png.png)
+![Register page](docs/register_account.png.png)
 
 ### Dashboard
-![Dashboard](docs/dashboard.png)
+![Dashboard](docs/dashboard.png.png)
 
 ### Managing applications
-![Applications list](docs/job_application.png)
-![Create an application](docs/create_application.png)
-![Edit an application](docs/edit_application.png)
-![Delete an application](docs/delete_application.png)
-![Search applications](docs/search_application.png)
+![Applications list](docs/job_application_list.png.png)
+![Create an application](docs/create_application.png.png)
+![Edit an application](docs/edit_application.png.png)
+![Delete an application](docs/delete_application.png.png)
+![Search applications](docs/search_application.png.png)
 
 ## Run it locally
 1. Install Visual Studio 2026 (ASP.NET and web development workload) and SQL Server.
